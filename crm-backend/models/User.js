@@ -5,42 +5,35 @@ const bcrypt = require('bcryptjs');
 const User = sequelize.define('User', {
   id: {
     type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4, // Automatically generate UUID v4
+    defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false, // Name is required
-  },
+  name: { type: DataTypes.STRING, allowNull: false },
   email: {
     type: DataTypes.STRING,
-    allowNull: false, // Email is required
-    unique: true,     // Email must be unique
-    validate: {
-      isEmail: true,  // Validate email format
-    },
+    allowNull: false,
+    unique: true,
+    validate: { isEmail: true },
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false, // Password is required
-  },
+  password: { type: DataTypes.STRING, allowNull: false },
   role: {
     type: DataTypes.ENUM('admin', 'sales_rep', 'support_agent'),
-    allowNull: false, // Role is required
+    allowNull: false,
     defaultValue: 'sales_rep',
   },
+  salesGoal: {
+  type: DataTypes.FLOAT,
+  defaultValue: 0,
+},
 }, {
-  timestamps: true, // Adds createdAt and updatedAt timestamps
-
+  timestamps: true,
   hooks: {
-    // Hash password before creating user
     beforeCreate: async (user) => {
       if (user.password) {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
       }
     },
-    // Hash password before updating user if password changed
     beforeUpdate: async (user) => {
       if (user.changed('password')) {
         const salt = await bcrypt.genSalt(10);
@@ -50,7 +43,6 @@ const User = sequelize.define('User', {
   },
 });
 
-// Instance method to compare entered password with hashed password
 User.prototype.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

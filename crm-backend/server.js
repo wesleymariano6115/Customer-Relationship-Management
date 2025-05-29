@@ -1,12 +1,15 @@
-require('dotenv').config(); // Load env variables first
+require('dotenv').config(); 
 
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const sequelize = require('./config/db');
+const models = require('./models'); 
+
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const salesRepRoutes = require('./routes/salesRepRoutes');
+const leadRoutes = require('./routes/leadRoutes');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -25,9 +28,8 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/salesrep', salesRepRoutes);
+app.use('/api/leads', leadRoutes);
 
-// Error handling middleware (should be last)
-app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
@@ -36,8 +38,8 @@ const PORT = process.env.PORT || 3000;
     await sequelize.authenticate();
     console.log('Database connected');
 
-    // Sync models (use migrations in production)
-    await sequelize.sync();
+    // Sync all models and associations
+    await sequelize.sync({ alter: true }); // Use { force: true } to drop & recreate tables
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
@@ -46,3 +48,7 @@ const PORT = process.env.PORT || 3000;
     console.error('Unable to connect to the database:', error);
   }
 })();
+
+
+
+app.use(errorMiddleware);
