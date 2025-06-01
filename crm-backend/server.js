@@ -38,9 +38,9 @@ const PORT = process.env.PORT || 3000;
     await sequelize.authenticate();
     console.log('Database connected');
 
-    // Sync all models and associations
-    await sequelize.sync({ alter: true }); // Use { force: true } to drop & recreate tables
-
+    
+    await sequelize.sync({ alter: true }); 
+ 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
