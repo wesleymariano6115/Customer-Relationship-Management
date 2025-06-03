@@ -1,0 +1,19 @@
+<resources>
+    <!-- Dark background colors -->
+    <color name="background_dark">#454547</color>
+    <color name="card_background">#1E1E1E</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+
+    <!-- Accent colors -->
+    <color name="teal_200">#03DAC5</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="red_500">#F44336</color>
+
+    <!-- Other -->
+    <color name="divider">#373737</color>
+</resources>
