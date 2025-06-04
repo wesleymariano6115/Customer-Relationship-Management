@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground">
+
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
+
+    <!-- Main Content -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <!-- Horizontal summary cards -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardTotalLeads"
+                            android:layout_width="160dp"
+                            android:layout_height="100dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardElevation="4dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/teal_700"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tvTotalLeads"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorPrimary"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Leads"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardActiveCustomers"
+                            android:layout_width="160dp"
+                            android:layout_height="100dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardElevation="4dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/teal_700"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tvActiveCustomers"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorPrimary"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Active Customers"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardSalesMonth"
+                            android:layout_width="160dp"
+                            android:layout_height="100dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardElevation="4dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/teal_700"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tvSalesMonth"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$0"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorPrimary"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sales This Month"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardPendingActivities"
+                            android:layout_width="160dp"
+                            android:layout_height="100dp"
+                            app:cardElevation="4dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/teal_700"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tvPendingActivities"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorPrimary"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pending Activities"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Leads RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewLeads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:clipToPadding="false"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="80dp"/>
+
+                <!-- ProgressBar for loading -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Floating Action Button to add new lead -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddLead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:contentDescription="Add Lead"
+        app:tint="@android:color/white"
+        app:layout_anchor="@id/recyclerViewLeads"
+        app:layout_anchorGravity="bottom|end"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
