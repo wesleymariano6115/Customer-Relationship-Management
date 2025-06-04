@@ -5,6 +5,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const sequelize = require('./config/db');
 const models = require('./models'); 
+const fs = require('fs');
+const https = require('https');
 
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -33,21 +35,8 @@ app.use('/api/leads', leadRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Database connected');
-
-    await sequelize.sync({ alter: true }); 
- 
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-})();
-
-
+app.listen(PORT, () => {
+  console.log(`HTTP Server running on port ${PORT}`);
+});
 
 app.use(errorMiddleware);
